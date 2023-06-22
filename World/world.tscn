@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://eb12ugn447b3"]
+[gd_scene load_steps=30 format=3 uid="uid://eb12ugn447b3"]
 
 [ext_resource type="Script" path="res://World/world.gd" id="1_p3dig"]
 [ext_resource type="PackedScene" uid="uid://d2xlexupf8ot0" path="res://Enemies/basic_enemy.tscn" id="2_er2tu"]
@@ -15,12 +15,13 @@
 [ext_resource type="PackedScene" uid="uid://dh5hhbjkgbjgf" path="res://Turrets/basic_turret.tscn" id="6_xfr7i"]
 [ext_resource type="PackedScene" uid="uid://bufo6nmi6meji" path="res://Enemies/tank_enemy.tscn" id="7_tdbrl"]
 [ext_resource type="PackedScene" uid="uid://qd7vmern3xhj" path="res://Turrets/fast_turret.tscn" id="7_yndvy"]
+[ext_resource type="Script" path="res://World/WaveLabel.gd" id="9_o78d1"]
 
 [sub_resource type="Resource" id="Resource_ql0ut"]
 script = ExtResource("3_ubswt")
 enemy = ExtResource("2_er2tu")
 number_of_enemies = 50
-enemies_per_second = 1.0
+enemies_per_second = 3.0
 
 [sub_resource type="Resource" id="Resource_27rfk"]
 script = ExtResource("4_5l1nr")
@@ -30,7 +31,7 @@ wave_sections = Array[Resource("res://Wave/wave_section.gd")]([SubResource("Reso
 script = ExtResource("3_ubswt")
 enemy = ExtResource("5_3q7lx")
 number_of_enemies = 100
-enemies_per_second = 2.0
+enemies_per_second = 4.0
 
 [sub_resource type="Resource" id="Resource_mwvxd"]
 script = ExtResource("4_5l1nr")
@@ -40,7 +41,7 @@ wave_sections = Array[Resource("res://Wave/wave_section.gd")]([SubResource("Reso
 script = ExtResource("3_ubswt")
 enemy = ExtResource("6_dopac")
 number_of_enemies = 175
-enemies_per_second = 0.5
+enemies_per_second = 6.0
 
 [sub_resource type="Resource" id="Resource_am1ak"]
 script = ExtResource("4_5l1nr")
@@ -50,13 +51,13 @@ wave_sections = Array[Resource("res://Wave/wave_section.gd")]([SubResource("Reso
 script = ExtResource("3_ubswt")
 enemy = ExtResource("6_dopac")
 number_of_enemies = 50
-enemies_per_second = 0.25
+enemies_per_second = 8.0
 
 [sub_resource type="Resource" id="Resource_r6qmc"]
 script = ExtResource("3_ubswt")
 enemy = ExtResource("7_tdbrl")
 number_of_enemies = 20
-enemies_per_second = 1.0
+enemies_per_second = 3.0
 
 [sub_resource type="Resource" id="Resource_8nvcx"]
 script = ExtResource("4_5l1nr")
@@ -86,7 +87,7 @@ name = "Fast Turret"
 script = ExtResource("1_p3dig")
 waves = Array[ExtResource("4_5l1nr")]([SubResource("Resource_27rfk"), SubResource("Resource_mwvxd"), SubResource("Resource_am1ak"), SubResource("Resource_8nvcx")])
 enemy_parent = NodePath("Path")
-start_button = NodePath("CanvasLayer/Control/Sidebar/MarginContainer/VBoxContainer/StartButton")
+start_button = NodePath("CanvasLayer/Control/Sidebar/MarginContainer/VBoxContainer/HBoxContainer3/StartButton")
 
 [node name="Path" type="Path2D" parent="."]
 curve = SubResource("Curve2D_0i1sx")
@@ -155,9 +156,23 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="CanvasLayer/Control/Sidebar/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
+text = "Wave
+"
+
+[node name="WaveLabel" type="Label" parent="CanvasLayer/Control/Sidebar/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "1"
+script = ExtResource("9_o78d1")
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="CanvasLayer/Control/Sidebar/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/Sidebar/MarginContainer/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
 text = "Health"
 
-[node name="HealthLabel" type="Label" parent="CanvasLayer/Control/Sidebar/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="HealthLabel" type="Label" parent="CanvasLayer/Control/Sidebar/MarginContainer/VBoxContainer/HBoxContainer4"]
 layout_mode = 2
 size_flags_horizontal = 10
 text = "100"
@@ -197,11 +212,21 @@ turrets = Array[ExtResource("5_p0qom")]([SubResource("Resource_2frp7"), SubResou
 turret_parent = NodePath("../../../../../..")
 shop_button = ExtResource("6_ajp2n")
 
-[node name="StartButton" type="Button" parent="CanvasLayer/Control/Sidebar/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer3" type="HBoxContainer" parent="CanvasLayer/Control/Sidebar/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="StartButton" type="Button" parent="CanvasLayer/Control/Sidebar/MarginContainer/VBoxContainer/HBoxContainer3"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 23
 text = "Start Round"
+
+[node name="SpeedButton" type="Button" parent="CanvasLayer/Control/Sidebar/MarginContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 23
+toggle_mode = true
+text = "2x Speed"
 
 [node name="ColorRect" type="ColorRect" parent="."]
 z_index = -10
@@ -209,7 +234,9 @@ offset_right = 1176.0
 offset_bottom = 675.0
 color = Color(0.0509804, 0.478431, 0.0509804, 1)
 
-[connection signal="health_changed" from="." to="CanvasLayer/Control/Sidebar/MarginContainer/VBoxContainer/HBoxContainer/HealthLabel" method="_on_world_health_changed"]
+[connection signal="health_changed" from="." to="CanvasLayer/Control/Sidebar/MarginContainer/VBoxContainer/HBoxContainer/WaveLabel" method="_on_world_health_changed"]
 [connection signal="round_ended" from="." to="." method="_on_round_ended"]
+[connection signal="wave_count_changed" from="." to="CanvasLayer/Control/Sidebar/MarginContainer/VBoxContainer/HBoxContainer/WaveLabel" method="_on_world_wave_count_changed"]
 [connection signal="area_entered" from="Exit" to="." method="_on_exit_area_entered"]
-[connection signal="pressed" from="CanvasLayer/Control/Sidebar/MarginContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/Sidebar/MarginContainer/VBoxContainer/HBoxContainer3/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="toggled" from="CanvasLayer/Control/Sidebar/MarginContainer/VBoxContainer/HBoxContainer3/SpeedButton" to="." method="_on_speed_button_toggled"]
