@@ -1,10 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://barya0bh7d7dx"]
+[gd_scene load_steps=4 format=3 uid="uid://barya0bh7d7dx"]
 
 [ext_resource type="PackedScene" uid="uid://dnlssr3d53l18" path="res://Turret/turret.tscn" id="1_hest7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_13iru"]
 resource_local_to_scene = true
 radius = 175.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s5lvv"]
+resource_local_to_scene = true
+size = Vector2(32, 22)
 
 [node name="RifleTurret" instance=ExtResource("1_hest7")]
 radius = 350.0
@@ -25,3 +29,7 @@ scale = Vector2(0.466406, 0.0604375)
 
 [node name="FirePosition" parent="Barrel/FirePositions" index="0"]
 position = Vector2(60, 0)
+
+[node name="CollisionShape2D" parent="TurretCollider" index="0"]
+visible = true
+shape = SubResource("RectangleShape2D_s5lvv")

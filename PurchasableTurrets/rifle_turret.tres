@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="PurchasableTurret" load_steps=3 format=3 uid="uid://b5444ga0ihiyo"]
+
+[ext_resource type="Script" path="res://Turret/purchasable_turret.gd" id="1_3ltgt"]
+[ext_resource type="PackedScene" uid="uid://barya0bh7d7dx" path="res://Turrets/rifle_turret.tscn" id="2_u3mjf"]
+
+[resource]
+script = ExtResource("1_3ltgt")
+turret = ExtResource("2_u3mjf")
+price = 125.0
+name = "Rifle Turret"

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="PurchasableTurret" load_steps=3 format=3 uid="uid://danoq4r23d6vy"]
+
+[ext_resource type="Script" path="res://Turret/purchasable_turret.gd" id="1_vkcvn"]
+[ext_resource type="PackedScene" uid="uid://qd7vmern3xhj" path="res://Turrets/fast_turret.tscn" id="2_ibvp1"]
+
+[resource]
+script = ExtResource("1_vkcvn")
+turret = ExtResource("2_ibvp1")
+price = 250.0
+name = "Fast Turret"

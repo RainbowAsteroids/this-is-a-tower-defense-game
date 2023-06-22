@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://eb12ugn447b3"]
+[gd_scene load_steps=34 format=3 uid="uid://eb12ugn447b3"]
 
 [ext_resource type="Script" path="res://World/world.gd" id="1_p3dig"]
 [ext_resource type="PackedScene" uid="uid://d2xlexupf8ot0" path="res://Enemies/basic_enemy.tscn" id="2_er2tu"]
@@ -9,15 +9,15 @@
 [ext_resource type="Script" path="res://Wave/wave.gd" id="4_5l1nr"]
 [ext_resource type="Script" path="res://World/shop.gd" id="4_nfxdo"]
 [ext_resource type="PackedScene" uid="uid://bbckncmw2mwqs" path="res://Enemies/chunky_enemy.tscn" id="5_3q7lx"]
-[ext_resource type="Script" path="res://Turret/purchasable_turret.gd" id="5_p0qom"]
 [ext_resource type="PackedScene" uid="uid://bb421g0tdgrgr" path="res://World/shop_button.tscn" id="6_ajp2n"]
 [ext_resource type="PackedScene" uid="uid://b81d6tupdr1ba" path="res://Enemies/fast_enemy.tscn" id="6_dopac"]
-[ext_resource type="PackedScene" uid="uid://dh5hhbjkgbjgf" path="res://Turrets/basic_turret.tscn" id="6_xfr7i"]
 [ext_resource type="PackedScene" uid="uid://bufo6nmi6meji" path="res://Enemies/tank_enemy.tscn" id="7_tdbrl"]
-[ext_resource type="PackedScene" uid="uid://qd7vmern3xhj" path="res://Turrets/fast_turret.tscn" id="7_yndvy"]
 [ext_resource type="Script" path="res://World/WaveLabel.gd" id="9_o78d1"]
-[ext_resource type="PackedScene" uid="uid://barya0bh7d7dx" path="res://Turrets/rifle_turret.tscn" id="16_rvapt"]
-[ext_resource type="PackedScene" uid="uid://is4bf7bu5wlk" path="res://Turrets/multi_turret.tscn" id="17_fc0r2"]
+[ext_resource type="Resource" uid="uid://cjv8338rchj35" path="res://PurchasableTurrets/basic_turret.tres" id="13_464ma"]
+[ext_resource type="Resource" uid="uid://b5444ga0ihiyo" path="res://PurchasableTurrets/rifle_turret.tres" id="14_f5qdl"]
+[ext_resource type="Resource" uid="uid://danoq4r23d6vy" path="res://PurchasableTurrets/fast_turret.tres" id="15_tq1hl"]
+[ext_resource type="Resource" uid="uid://l2qcjfls3e2e" path="res://PurchasableTurrets/shotgun_turret.tres" id="16_3wuwi"]
+[ext_resource type="Resource" uid="uid://b36y7unyp0m78" path="res://PurchasableTurrets/multi_turret.tres" id="17_6r4le"]
 
 [sub_resource type="Resource" id="Resource_ql0ut"]
 script = ExtResource("3_ubswt")
@@ -94,30 +94,6 @@ _data = {
 point_count = 12
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1ef17"]
-
-[sub_resource type="Resource" id="Resource_2frp7"]
-script = ExtResource("5_p0qom")
-turret = ExtResource("6_xfr7i")
-price = 150.0
-name = "Basic Turret"
-
-[sub_resource type="Resource" id="Resource_10uv4"]
-script = ExtResource("5_p0qom")
-turret = ExtResource("7_yndvy")
-price = 250.0
-name = "Fast Turret"
-
-[sub_resource type="Resource" id="Resource_ni8or"]
-script = ExtResource("5_p0qom")
-turret = ExtResource("16_rvapt")
-price = 300.0
-name = "Rifle Turret"
-
-[sub_resource type="Resource" id="Resource_2g80w"]
-script = ExtResource("5_p0qom")
-turret = ExtResource("17_fc0r2")
-price = 350.0
-name = "Mutli Turret"
 
 [node name="World" type="Node2D" node_paths=PackedStringArray("enemy_parent", "start_button")]
 script = ExtResource("1_p3dig")
@@ -232,12 +208,12 @@ theme_override_font_sizes/font_size = 50
 text = "Shop"
 horizontal_alignment = 1
 
-[node name="Shop" type="VBoxContainer" parent="CanvasLayer/Control/Sidebar/MarginContainer/VBoxContainer" node_paths=PackedStringArray("turret_parent")]
+[node name="Shop" type="VBoxContainer" parent="CanvasLayer/Control/Sidebar/MarginContainer/VBoxContainer" node_paths=PackedStringArray("world")]
 layout_mode = 2
 size_flags_vertical = 3
 script = ExtResource("4_nfxdo")
-turrets = Array[ExtResource("5_p0qom")]([SubResource("Resource_2frp7"), SubResource("Resource_10uv4"), SubResource("Resource_ni8or"), SubResource("Resource_2g80w")])
-turret_parent = NodePath("../../../../../..")
+turrets = Array[Resource("res://Turret/purchasable_turret.gd")]([ExtResource("13_464ma"), ExtResource("14_f5qdl"), ExtResource("15_tq1hl"), ExtResource("16_3wuwi"), ExtResource("17_6r4le")])
+world = NodePath("../../../../../..")
 shop_button = ExtResource("6_ajp2n")
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="CanvasLayer/Control/Sidebar/MarginContainer/VBoxContainer"]

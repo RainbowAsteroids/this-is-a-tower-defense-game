@@ -1,0 +1,56 @@
+[gd_scene load_steps=6 format=3 uid="uid://bfgwbnmpknrnl"]
+
+[ext_resource type="PackedScene" uid="uid://dnlssr3d53l18" path="res://Turret/turret.tscn" id="1_qoh3b"]
+[ext_resource type="Script" path="res://Turret/multi_turret.gd" id="2_se3dw"]
+[ext_resource type="Texture2D" uid="uid://bdoxd3xps8sbu" path="res://icon.svg" id="3_wtu38"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tknd6"]
+resource_local_to_scene = true
+radius = 175.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_61yjg"]
+resource_local_to_scene = true
+size = Vector2(32, 32)
+
+[node name="ShotgunTurret" instance=ExtResource("1_qoh3b")]
+script = ExtResource("2_se3dw")
+radius = 60.0
+bullets_per_second = 1.75
+bullet_penetration = 2
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource("CircleShape2D_tknd6")
+
+[node name="Icon" parent="." index="1"]
+modulate = Color(1, 1, 0, 1)
+
+[node name="Sprite2D" parent="Barrel" index="0"]
+modulate = Color(0.54902, 0.541176, 0, 1)
+metadata/_edit_lock_ = true
+
+[node name="FirePosition2" type="Marker2D" parent="Barrel/FirePositions" index="1"]
+position = Vector2(33, -19)
+rotation = -0.523599
+
+[node name="FirePosition3" type="Marker2D" parent="Barrel/FirePositions" index="2"]
+position = Vector2(33, 19)
+rotation = 0.523599
+
+[node name="Sprite2D2" type="Sprite2D" parent="Barrel" index="2"]
+modulate = Color(0.54902, 0.541176, 0, 1)
+rotation = -0.523599
+scale = Vector2(0.3, 0.074)
+texture = ExtResource("3_wtu38")
+offset = Vector2(65, 0)
+metadata/_edit_lock_ = true
+
+[node name="Sprite2D3" type="Sprite2D" parent="Barrel" index="3"]
+modulate = Color(0.54902, 0.541176, 0, 1)
+rotation = 0.523599
+scale = Vector2(0.3, 0.074)
+texture = ExtResource("3_wtu38")
+offset = Vector2(65, 0)
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" parent="TurretCollider" index="0"]
+shape = SubResource("RectangleShape2D_61yjg")

@@ -42,7 +42,7 @@ func _physics_process(_delta):
 		if len(enemies) != 0:
 			enemies.sort_custom(func(a, b): return a.get_parent().progress > b.get_parent().progress)
 			
-			barrel.look_at(enemies[0].global_position)
+			look_at(enemies[0].global_position)
 			
 			if fire_timer.is_stopped():
 				_on_fire_timer_timeout()

@@ -9,7 +9,6 @@ radius = 175.0
 [node name="BasicTurret" instance=ExtResource("1_lpp3n")]
 
 [node name="CollisionShape2D" parent="." index="0"]
-visible = false
 shape = SubResource("CircleShape2D_cbb2l")
 
 [node name="Icon" parent="." index="1"]
@@ -17,6 +16,3 @@ modulate = Color(0.627451, 0.560784, 1, 1)
 
 [node name="Sprite2D" parent="Barrel" index="0"]
 modulate = Color(0.627451, 0.560784, 1, 1)
-
-[node name="CollisionShape2D" parent="TurretCollider" index="0"]
-visible = false
