@@ -11,14 +11,15 @@ signal round_ended
 	set(value):
 		health = value
 		health_changed.emit(value)
-@export var wave_count: int:
-	set(value):
-		wave_count = value
-		wave_count_changed.emit(value)
 @export var money: float = 500
 
 @export var enemy_parent: Path2D
 @export var start_button: Button
+
+var wave_count: int:
+	set(value):
+		wave_count = value
+		wave_count_changed.emit(value)
 
 func _ready():
 	MoneyManager.money = money
@@ -35,7 +36,7 @@ func _ready():
 	pass # the game is over
 
 func _on_exit_area_entered(area: EnemyArea2D):
-	health -= area.get_parent().damage
+	self.health -= area.get_parent().damage
 	area.get_parent().queue_free()
 
 func _on_start_button_pressed():

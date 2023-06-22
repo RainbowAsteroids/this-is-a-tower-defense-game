@@ -10,13 +10,14 @@ resource_local_to_scene = true
 radius = 175.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r2kei"]
-size = Vector2(32, 32)
+size = Vector2(32, 22)
 
 [node name="Turret" type="Area2D"]
 script = ExtResource("1_8dyr8")
 radius = 175.0
 damage = 1.0
 bullet_scene = ExtResource("2_qk322")
+bullets_per_second = 1.25
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_r0g2t")

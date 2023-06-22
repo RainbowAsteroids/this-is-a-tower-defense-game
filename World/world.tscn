@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://eb12ugn447b3"]
+[gd_scene load_steps=38 format=3 uid="uid://eb12ugn447b3"]
 
 [ext_resource type="Script" path="res://World/world.gd" id="1_p3dig"]
 [ext_resource type="PackedScene" uid="uid://d2xlexupf8ot0" path="res://Enemies/basic_enemy.tscn" id="2_er2tu"]
@@ -16,6 +16,8 @@
 [ext_resource type="PackedScene" uid="uid://bufo6nmi6meji" path="res://Enemies/tank_enemy.tscn" id="7_tdbrl"]
 [ext_resource type="PackedScene" uid="uid://qd7vmern3xhj" path="res://Turrets/fast_turret.tscn" id="7_yndvy"]
 [ext_resource type="Script" path="res://World/WaveLabel.gd" id="9_o78d1"]
+[ext_resource type="PackedScene" uid="uid://barya0bh7d7dx" path="res://Turrets/rifle_turret.tscn" id="16_rvapt"]
+[ext_resource type="PackedScene" uid="uid://is4bf7bu5wlk" path="res://Turrets/multi_turret.tscn" id="17_fc0r2"]
 
 [sub_resource type="Resource" id="Resource_ql0ut"]
 script = ExtResource("3_ubswt")
@@ -63,6 +65,28 @@ enemies_per_second = 3.0
 script = ExtResource("4_5l1nr")
 wave_sections = Array[Resource("res://Wave/wave_section.gd")]([SubResource("Resource_b7val"), SubResource("Resource_r6qmc")])
 
+[sub_resource type="Resource" id="Resource_0ymfe"]
+script = ExtResource("3_ubswt")
+enemy = ExtResource("6_dopac")
+number_of_enemies = 150
+enemies_per_second = 45.0
+
+[sub_resource type="Resource" id="Resource_uemyg"]
+script = ExtResource("3_ubswt")
+enemy = ExtResource("7_tdbrl")
+number_of_enemies = 50
+enemies_per_second = 5.0
+
+[sub_resource type="Resource" id="Resource_axfx5"]
+script = ExtResource("3_ubswt")
+enemy = ExtResource("5_3q7lx")
+number_of_enemies = 450
+enemies_per_second = 25.0
+
+[sub_resource type="Resource" id="Resource_o0dlv"]
+script = ExtResource("4_5l1nr")
+wave_sections = Array[Resource("res://Wave/wave_section.gd")]([SubResource("Resource_0ymfe"), SubResource("Resource_uemyg"), SubResource("Resource_axfx5")])
+
 [sub_resource type="Curve2D" id="Curve2D_0i1sx"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 61, 30, 0, 0, 0, 0, 68, 598, 0, 0, 0, 0, 227, 598, 0, 0, 0, 0, 221, 50, 0, 0, 0, 0, 355, 50, 0, 0, 0, 0, 371, 595, 0, 0, 0, 0, 488, 598, 0, 0, 0, 0, 497, 66, 0, 0, 0, 0, 641, 71, 0, 0, 0, 0, 633, 582, 0, 0, 0, 0, 761, 588, 0, 0, 0, 0, 807, 100)
@@ -83,9 +107,21 @@ turret = ExtResource("7_yndvy")
 price = 250.0
 name = "Fast Turret"
 
+[sub_resource type="Resource" id="Resource_ni8or"]
+script = ExtResource("5_p0qom")
+turret = ExtResource("16_rvapt")
+price = 300.0
+name = "Rifle Turret"
+
+[sub_resource type="Resource" id="Resource_2g80w"]
+script = ExtResource("5_p0qom")
+turret = ExtResource("17_fc0r2")
+price = 350.0
+name = "Mutli Turret"
+
 [node name="World" type="Node2D" node_paths=PackedStringArray("enemy_parent", "start_button")]
 script = ExtResource("1_p3dig")
-waves = Array[ExtResource("4_5l1nr")]([SubResource("Resource_27rfk"), SubResource("Resource_mwvxd"), SubResource("Resource_am1ak"), SubResource("Resource_8nvcx")])
+waves = Array[ExtResource("4_5l1nr")]([SubResource("Resource_27rfk"), SubResource("Resource_mwvxd"), SubResource("Resource_am1ak"), SubResource("Resource_8nvcx"), SubResource("Resource_o0dlv")])
 enemy_parent = NodePath("Path")
 start_button = NodePath("CanvasLayer/Control/Sidebar/MarginContainer/VBoxContainer/HBoxContainer3/StartButton")
 
@@ -94,7 +130,6 @@ curve = SubResource("Curve2D_0i1sx")
 script = ExtResource("2_vfbrp")
 
 [node name="Line2D" type="Line2D" parent="Path"]
-width = 5.0
 default_color = Color(0.921569, 0.654902, 0.258824, 1)
 joint_mode = 2
 begin_cap_mode = 2
@@ -197,18 +232,11 @@ theme_override_font_sizes/font_size = 50
 text = "Shop"
 horizontal_alignment = 1
 
-[node name="Description" type="Label" parent="CanvasLayer/Control/Sidebar/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 100)
-layout_mode = 2
-theme_override_font_sizes/font_size = 12
-text = "this is some text"
-autowrap_mode = 2
-
 [node name="Shop" type="VBoxContainer" parent="CanvasLayer/Control/Sidebar/MarginContainer/VBoxContainer" node_paths=PackedStringArray("turret_parent")]
 layout_mode = 2
 size_flags_vertical = 3
 script = ExtResource("4_nfxdo")
-turrets = Array[ExtResource("5_p0qom")]([SubResource("Resource_2frp7"), SubResource("Resource_10uv4")])
+turrets = Array[ExtResource("5_p0qom")]([SubResource("Resource_2frp7"), SubResource("Resource_10uv4"), SubResource("Resource_ni8or"), SubResource("Resource_2g80w")])
 turret_parent = NodePath("../../../../../..")
 shop_button = ExtResource("6_ajp2n")
 
@@ -234,7 +262,7 @@ offset_right = 1176.0
 offset_bottom = 675.0
 color = Color(0.0509804, 0.478431, 0.0509804, 1)
 
-[connection signal="health_changed" from="." to="CanvasLayer/Control/Sidebar/MarginContainer/VBoxContainer/HBoxContainer/WaveLabel" method="_on_world_health_changed"]
+[connection signal="health_changed" from="." to="CanvasLayer/Control/Sidebar/MarginContainer/VBoxContainer/HBoxContainer4/HealthLabel" method="_on_world_health_changed"]
 [connection signal="round_ended" from="." to="." method="_on_round_ended"]
 [connection signal="wave_count_changed" from="." to="CanvasLayer/Control/Sidebar/MarginContainer/VBoxContainer/HBoxContainer/WaveLabel" method="_on_world_wave_count_changed"]
 [connection signal="area_entered" from="Exit" to="." method="_on_exit_area_entered"]

@@ -13,6 +13,7 @@ signal dead
 @export var bounty: int = 1
 
 func _draw():
+	draw_circle(Vector2(), radius + 1, Color.BLACK)
 	draw_circle(Vector2(), radius, color)
 
 func _ready():
