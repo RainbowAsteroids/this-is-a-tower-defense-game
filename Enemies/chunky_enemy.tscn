@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bbckncmw2mwqs"]
+
+[ext_resource type="PackedScene" uid="uid://d0s11g84t3a2e" path="res://Enemy/enemy.tscn" id="1_3rxx4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5ahxf"]
+resource_local_to_scene = true
+radius = 15.0
+
+[node name="ChunkyEnemy" instance=ExtResource("1_3rxx4")]
+color = Color(0, 0.517647, 1, 1)
+health = 2.0
+damage = 2.0
+bounty = 10
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+shape = SubResource("CircleShape2D_5ahxf")

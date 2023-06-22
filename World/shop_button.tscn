@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bb421g0tdgrgr"]
+
+[ext_resource type="Script" path="res://World/shop_button.gd" id="1_sehg2"]
+
+[node name="Button" type="Button"]
+size_flags_horizontal = 4
+text = "Basic turret ($500)"
+script = ExtResource("1_sehg2")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://d0s11g84t3a2e"]
+
+[ext_resource type="Script" path="res://Enemy/enemy.gd" id="1_mah85"]
+[ext_resource type="Script" path="res://Enemy/EnemyArea2D.gd" id="2_2xbf2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ma6pp"]
+resource_local_to_scene = true
+radius = 15.0
+
+[node name="Enemy" type="PathFollow2D"]
+script = ExtResource("1_mah85")
+radius = 15.0
+speed = 50.0
+
+[node name="Area2D" type="Area2D" parent="."]
+script = ExtResource("2_2xbf2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_ma6pp")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_bullet_area_entered"]

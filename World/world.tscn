@@ -1,0 +1,215 @@
+[gd_scene load_steps=29 format=3 uid="uid://eb12ugn447b3"]
+
+[ext_resource type="Script" path="res://World/world.gd" id="1_p3dig"]
+[ext_resource type="PackedScene" uid="uid://d2xlexupf8ot0" path="res://Enemies/basic_enemy.tscn" id="2_er2tu"]
+[ext_resource type="Script" path="res://World/Path.gd" id="2_vfbrp"]
+[ext_resource type="Script" path="res://World/MoneyLabel.gd" id="3_iag4t"]
+[ext_resource type="Script" path="res://World/HealthLabel.gd" id="3_mqx38"]
+[ext_resource type="Script" path="res://Wave/enemy_burst.gd" id="3_ubswt"]
+[ext_resource type="Script" path="res://Wave/wave.gd" id="4_5l1nr"]
+[ext_resource type="Script" path="res://World/shop.gd" id="4_nfxdo"]
+[ext_resource type="PackedScene" uid="uid://bbckncmw2mwqs" path="res://Enemies/chunky_enemy.tscn" id="5_3q7lx"]
+[ext_resource type="Script" path="res://Turret/purchasable_turret.gd" id="5_p0qom"]
+[ext_resource type="PackedScene" uid="uid://bb421g0tdgrgr" path="res://World/shop_button.tscn" id="6_ajp2n"]
+[ext_resource type="PackedScene" uid="uid://b81d6tupdr1ba" path="res://Enemies/fast_enemy.tscn" id="6_dopac"]
+[ext_resource type="PackedScene" uid="uid://dh5hhbjkgbjgf" path="res://Turrets/basic_turret.tscn" id="6_xfr7i"]
+[ext_resource type="PackedScene" uid="uid://bufo6nmi6meji" path="res://Enemies/tank_enemy.tscn" id="7_tdbrl"]
+[ext_resource type="PackedScene" uid="uid://qd7vmern3xhj" path="res://Turrets/fast_turret.tscn" id="7_yndvy"]
+
+[sub_resource type="Resource" id="Resource_ql0ut"]
+script = ExtResource("3_ubswt")
+enemy = ExtResource("2_er2tu")
+number_of_enemies = 50
+enemies_per_second = 1.0
+
+[sub_resource type="Resource" id="Resource_27rfk"]
+script = ExtResource("4_5l1nr")
+wave_sections = Array[Resource("res://Wave/wave_section.gd")]([SubResource("Resource_ql0ut")])
+
+[sub_resource type="Resource" id="Resource_bvsci"]
+script = ExtResource("3_ubswt")
+enemy = ExtResource("5_3q7lx")
+number_of_enemies = 100
+enemies_per_second = 2.0
+
+[sub_resource type="Resource" id="Resource_mwvxd"]
+script = ExtResource("4_5l1nr")
+wave_sections = Array[Resource("res://Wave/wave_section.gd")]([SubResource("Resource_bvsci")])
+
+[sub_resource type="Resource" id="Resource_um3qr"]
+script = ExtResource("3_ubswt")
+enemy = ExtResource("6_dopac")
+number_of_enemies = 175
+enemies_per_second = 0.5
+
+[sub_resource type="Resource" id="Resource_am1ak"]
+script = ExtResource("4_5l1nr")
+wave_sections = Array[Resource("res://Wave/wave_section.gd")]([SubResource("Resource_um3qr")])
+
+[sub_resource type="Resource" id="Resource_b7val"]
+script = ExtResource("3_ubswt")
+enemy = ExtResource("6_dopac")
+number_of_enemies = 50
+enemies_per_second = 0.25
+
+[sub_resource type="Resource" id="Resource_r6qmc"]
+script = ExtResource("3_ubswt")
+enemy = ExtResource("7_tdbrl")
+number_of_enemies = 20
+enemies_per_second = 1.0
+
+[sub_resource type="Resource" id="Resource_8nvcx"]
+script = ExtResource("4_5l1nr")
+wave_sections = Array[Resource("res://Wave/wave_section.gd")]([SubResource("Resource_b7val"), SubResource("Resource_r6qmc")])
+
+[sub_resource type="Curve2D" id="Curve2D_0i1sx"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 61, 30, 0, 0, 0, 0, 68, 598, 0, 0, 0, 0, 227, 598, 0, 0, 0, 0, 221, 50, 0, 0, 0, 0, 355, 50, 0, 0, 0, 0, 371, 595, 0, 0, 0, 0, 488, 598, 0, 0, 0, 0, 497, 66, 0, 0, 0, 0, 641, 71, 0, 0, 0, 0, 633, 582, 0, 0, 0, 0, 761, 588, 0, 0, 0, 0, 807, 100)
+}
+point_count = 12
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1ef17"]
+
+[sub_resource type="Resource" id="Resource_2frp7"]
+script = ExtResource("5_p0qom")
+turret = ExtResource("6_xfr7i")
+price = 150.0
+name = "Basic Turret"
+
+[sub_resource type="Resource" id="Resource_10uv4"]
+script = ExtResource("5_p0qom")
+turret = ExtResource("7_yndvy")
+price = 250.0
+name = "Fast Turret"
+
+[node name="World" type="Node2D" node_paths=PackedStringArray("enemy_parent", "start_button")]
+script = ExtResource("1_p3dig")
+waves = Array[ExtResource("4_5l1nr")]([SubResource("Resource_27rfk"), SubResource("Resource_mwvxd"), SubResource("Resource_am1ak"), SubResource("Resource_8nvcx")])
+enemy_parent = NodePath("Path")
+start_button = NodePath("CanvasLayer/Control/Sidebar/MarginContainer/VBoxContainer/StartButton")
+
+[node name="Path" type="Path2D" parent="."]
+curve = SubResource("Curve2D_0i1sx")
+script = ExtResource("2_vfbrp")
+
+[node name="Line2D" type="Line2D" parent="Path"]
+width = 5.0
+default_color = Color(0.921569, 0.654902, 0.258824, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Exit" type="Area2D" parent="."]
+position = Vector2(812, 98)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Exit"]
+position = Vector2(-2, -4)
+shape = SubResource("RectangleShape2D_1ef17")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="HBoxContainer" parent="CanvasLayer"]
+offset_right = 1152.0
+offset_bottom = 648.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+metadata/_edit_lock_ = true
+
+[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/Control"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+
+[node name="MarginContainer3" type="MarginContainer" parent="CanvasLayer/Control"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+
+[node name="MarginContainer4" type="MarginContainer" parent="CanvasLayer/Control"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+
+[node name="Sidebar" type="Panel" parent="CanvasLayer/Control"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/Sidebar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.134979
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/Sidebar/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/Sidebar/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/Sidebar/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Health"
+
+[node name="HealthLabel" type="Label" parent="CanvasLayer/Control/Sidebar/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "100"
+script = ExtResource("3_mqx38")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/Control/Sidebar/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/Sidebar/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Money"
+
+[node name="MoneyLabel" type="Label" parent="CanvasLayer/Control/Sidebar/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "100"
+script = ExtResource("3_iag4t")
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/Sidebar/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Shop"
+horizontal_alignment = 1
+
+[node name="Description" type="Label" parent="CanvasLayer/Control/Sidebar/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "this is some text"
+autowrap_mode = 2
+
+[node name="Shop" type="VBoxContainer" parent="CanvasLayer/Control/Sidebar/MarginContainer/VBoxContainer" node_paths=PackedStringArray("turret_parent")]
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("4_nfxdo")
+turrets = Array[ExtResource("5_p0qom")]([SubResource("Resource_2frp7"), SubResource("Resource_10uv4")])
+turret_parent = NodePath("../../../../../..")
+shop_button = ExtResource("6_ajp2n")
+
+[node name="StartButton" type="Button" parent="CanvasLayer/Control/Sidebar/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 23
+text = "Start Round"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -10
+offset_right = 1176.0
+offset_bottom = 675.0
+color = Color(0.0509804, 0.478431, 0.0509804, 1)
+
+[connection signal="health_changed" from="." to="CanvasLayer/Control/Sidebar/MarginContainer/VBoxContainer/HBoxContainer/HealthLabel" method="_on_world_health_changed"]
+[connection signal="round_ended" from="." to="." method="_on_round_ended"]
+[connection signal="area_entered" from="Exit" to="." method="_on_exit_area_entered"]
+[connection signal="pressed" from="CanvasLayer/Control/Sidebar/MarginContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]

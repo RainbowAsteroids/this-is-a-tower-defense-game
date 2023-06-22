@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dh5hhbjkgbjgf"]
+
+[ext_resource type="PackedScene" uid="uid://dnlssr3d53l18" path="res://Turret/turret.tscn" id="1_lpp3n"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cbb2l"]
+resource_local_to_scene = true
+radius = 175.0
+
+[node name="BasicTurret" instance=ExtResource("1_lpp3n")]
+bullets_per_second = 1.25
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource("CircleShape2D_cbb2l")

@@ -1,0 +1,47 @@
+[gd_scene load_steps=4 format=3 uid="uid://qd7vmern3xhj"]
+
+[ext_resource type="PackedScene" uid="uid://dnlssr3d53l18" path="res://Turret/turret.tscn" id="1_74al0"]
+[ext_resource type="Texture2D" uid="uid://bdoxd3xps8sbu" path="res://icon.svg" id="2_ywevr"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_b3vt1"]
+resource_local_to_scene = true
+radius = 175.0
+
+[node name="Fast Turret" instance=ExtResource("1_74al0")]
+radius = 100.0
+bullets_per_second = 2.5
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource("CircleShape2D_b3vt1")
+metadata/_edit_lock_ = true
+
+[node name="Icon" parent="." index="1"]
+modulate = Color(1, 0, 0, 1)
+metadata/_edit_lock_ = true
+
+[node name="Barrel" parent="." index="3"]
+metadata/_edit_lock_ = true
+
+[node name="Sprite2D" parent="Barrel" index="0"]
+modulate = Color(0.431373, 0, 0, 1)
+position = Vector2(0, -8)
+metadata/_edit_lock_ = true
+
+[node name="FirePosition" parent="Barrel/FirePositions" index="0"]
+position = Vector2(38, -8)
+
+[node name="Marker2D" type="Marker2D" parent="Barrel/FirePositions" index="1"]
+position = Vector2(38, 9)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Barrel" index="2"]
+modulate = Color(0.431373, 0, 0, 1)
+position = Vector2(20, 8)
+scale = Vector2(0.304688, 0.0742188)
+texture = ExtResource("2_ywevr")
+metadata/_edit_lock_ = true
+
+[node name="TurretCollider" parent="." index="4"]
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" parent="TurretCollider" index="0"]
+metadata/_edit_lock_ = true

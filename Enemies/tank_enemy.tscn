@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://bufo6nmi6meji"]
+
+[ext_resource type="PackedScene" uid="uid://d0s11g84t3a2e" path="res://Enemy/enemy.tscn" id="1_lhpux"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qyoq2"]
+resource_local_to_scene = true
+radius = 15.0
+
+[node name="TankEnemy" instance=ExtResource("1_lhpux")]
+radius = 25.0
+color = Color(0.439216, 0.196078, 0, 1)
+speed = 25.0
+health = 10.0
+damage = 10.0
+bounty = 30
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+shape = SubResource("CircleShape2D_qyoq2")
