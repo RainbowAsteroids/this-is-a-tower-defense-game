@@ -6,5 +6,5 @@
 [resource]
 script = ExtResource("1_3ltgt")
 turret = ExtResource("2_u3mjf")
-price = 125.0
+price = 265.0
 name = "Rifle Turret"

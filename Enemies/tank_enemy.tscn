@@ -10,9 +10,8 @@ radius = 25.0
 radius = 25.0
 color = Color(0.439216, 0.196078, 0, 1)
 speed = 25.0
-health = 10.0
+health = 25.0
 damage = 10.0
-bounty = 10
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]
 shape = SubResource("CircleShape2D_qyoq2")

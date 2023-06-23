@@ -1,91 +1,27 @@
-[gd_scene load_steps=34 format=3 uid="uid://eb12ugn447b3"]
+[gd_scene load_steps=25 format=3 uid="uid://eb12ugn447b3"]
 
 [ext_resource type="Script" path="res://World/world.gd" id="1_p3dig"]
-[ext_resource type="PackedScene" uid="uid://d2xlexupf8ot0" path="res://Enemies/basic_enemy.tscn" id="2_er2tu"]
+[ext_resource type="Resource" uid="uid://7nvpepil78rs" path="res://Waves/wave1.tres" id="2_p3ltq"]
 [ext_resource type="Script" path="res://World/Path.gd" id="2_vfbrp"]
 [ext_resource type="Script" path="res://World/MoneyLabel.gd" id="3_iag4t"]
+[ext_resource type="Resource" uid="uid://baul6xqxse48s" path="res://Waves/wave2.tres" id="3_iyax1"]
 [ext_resource type="Script" path="res://World/HealthLabel.gd" id="3_mqx38"]
-[ext_resource type="Script" path="res://Wave/enemy_burst.gd" id="3_ubswt"]
-[ext_resource type="Script" path="res://Wave/wave.gd" id="4_5l1nr"]
+[ext_resource type="Resource" uid="uid://d1vdelcnk7lmn" path="res://Waves/wave3.tres" id="4_mmp4y"]
 [ext_resource type="Script" path="res://World/shop.gd" id="4_nfxdo"]
-[ext_resource type="PackedScene" uid="uid://bbckncmw2mwqs" path="res://Enemies/chunky_enemy.tscn" id="5_3q7lx"]
+[ext_resource type="Resource" uid="uid://bqt0vw38mm4fl" path="res://Waves/wave4.tres" id="5_n1ga1"]
+[ext_resource type="Resource" uid="uid://dstj3mv4i46tp" path="res://Waves/wave5.tres" id="6_08x4t"]
 [ext_resource type="PackedScene" uid="uid://bb421g0tdgrgr" path="res://World/shop_button.tscn" id="6_ajp2n"]
-[ext_resource type="PackedScene" uid="uid://b81d6tupdr1ba" path="res://Enemies/fast_enemy.tscn" id="6_dopac"]
-[ext_resource type="PackedScene" uid="uid://bufo6nmi6meji" path="res://Enemies/tank_enemy.tscn" id="7_tdbrl"]
+[ext_resource type="Resource" uid="uid://cj2stkp5kwnss" path="res://Waves/wave6.tres" id="7_yme6o"]
+[ext_resource type="Resource" uid="uid://nn4w0c68c7n1" path="res://Waves/wave7.tres" id="8_775ri"]
+[ext_resource type="Resource" uid="uid://pca410e7ywqk" path="res://Waves/wave8.tres" id="9_368gs"]
 [ext_resource type="Script" path="res://World/WaveLabel.gd" id="9_o78d1"]
+[ext_resource type="Resource" uid="uid://cj2stkp5kwnss" path="res://Waves/wave9.tres" id="10_hwr1u"]
+[ext_resource type="Resource" uid="uid://cj2stkp5kwnss" path="res://Waves/wave10.tres" id="11_ytfn8"]
 [ext_resource type="Resource" uid="uid://cjv8338rchj35" path="res://PurchasableTurrets/basic_turret.tres" id="13_464ma"]
 [ext_resource type="Resource" uid="uid://b5444ga0ihiyo" path="res://PurchasableTurrets/rifle_turret.tres" id="14_f5qdl"]
 [ext_resource type="Resource" uid="uid://danoq4r23d6vy" path="res://PurchasableTurrets/fast_turret.tres" id="15_tq1hl"]
 [ext_resource type="Resource" uid="uid://l2qcjfls3e2e" path="res://PurchasableTurrets/shotgun_turret.tres" id="16_3wuwi"]
 [ext_resource type="Resource" uid="uid://b36y7unyp0m78" path="res://PurchasableTurrets/multi_turret.tres" id="17_6r4le"]
-
-[sub_resource type="Resource" id="Resource_ql0ut"]
-script = ExtResource("3_ubswt")
-enemy = ExtResource("2_er2tu")
-number_of_enemies = 50
-enemies_per_second = 3.0
-
-[sub_resource type="Resource" id="Resource_27rfk"]
-script = ExtResource("4_5l1nr")
-wave_sections = Array[Resource("res://Wave/wave_section.gd")]([SubResource("Resource_ql0ut")])
-
-[sub_resource type="Resource" id="Resource_bvsci"]
-script = ExtResource("3_ubswt")
-enemy = ExtResource("5_3q7lx")
-number_of_enemies = 100
-enemies_per_second = 4.0
-
-[sub_resource type="Resource" id="Resource_mwvxd"]
-script = ExtResource("4_5l1nr")
-wave_sections = Array[Resource("res://Wave/wave_section.gd")]([SubResource("Resource_bvsci")])
-
-[sub_resource type="Resource" id="Resource_um3qr"]
-script = ExtResource("3_ubswt")
-enemy = ExtResource("6_dopac")
-number_of_enemies = 175
-enemies_per_second = 6.0
-
-[sub_resource type="Resource" id="Resource_am1ak"]
-script = ExtResource("4_5l1nr")
-wave_sections = Array[Resource("res://Wave/wave_section.gd")]([SubResource("Resource_um3qr")])
-
-[sub_resource type="Resource" id="Resource_b7val"]
-script = ExtResource("3_ubswt")
-enemy = ExtResource("6_dopac")
-number_of_enemies = 50
-enemies_per_second = 8.0
-
-[sub_resource type="Resource" id="Resource_r6qmc"]
-script = ExtResource("3_ubswt")
-enemy = ExtResource("7_tdbrl")
-number_of_enemies = 20
-enemies_per_second = 3.0
-
-[sub_resource type="Resource" id="Resource_8nvcx"]
-script = ExtResource("4_5l1nr")
-wave_sections = Array[Resource("res://Wave/wave_section.gd")]([SubResource("Resource_b7val"), SubResource("Resource_r6qmc")])
-
-[sub_resource type="Resource" id="Resource_0ymfe"]
-script = ExtResource("3_ubswt")
-enemy = ExtResource("6_dopac")
-number_of_enemies = 150
-enemies_per_second = 45.0
-
-[sub_resource type="Resource" id="Resource_uemyg"]
-script = ExtResource("3_ubswt")
-enemy = ExtResource("7_tdbrl")
-number_of_enemies = 50
-enemies_per_second = 5.0
-
-[sub_resource type="Resource" id="Resource_axfx5"]
-script = ExtResource("3_ubswt")
-enemy = ExtResource("5_3q7lx")
-number_of_enemies = 450
-enemies_per_second = 25.0
-
-[sub_resource type="Resource" id="Resource_o0dlv"]
-script = ExtResource("4_5l1nr")
-wave_sections = Array[Resource("res://Wave/wave_section.gd")]([SubResource("Resource_0ymfe"), SubResource("Resource_uemyg"), SubResource("Resource_axfx5")])
 
 [sub_resource type="Curve2D" id="Curve2D_0i1sx"]
 _data = {
@@ -97,7 +33,7 @@ point_count = 12
 
 [node name="World" type="Node2D" node_paths=PackedStringArray("enemy_parent", "start_button")]
 script = ExtResource("1_p3dig")
-waves = Array[ExtResource("4_5l1nr")]([SubResource("Resource_27rfk"), SubResource("Resource_mwvxd"), SubResource("Resource_am1ak"), SubResource("Resource_8nvcx"), SubResource("Resource_o0dlv")])
+waves = Array[Resource("res://Wave/wave.gd")]([ExtResource("2_p3ltq"), ExtResource("3_iyax1"), ExtResource("4_mmp4y"), ExtResource("5_n1ga1"), ExtResource("6_08x4t"), ExtResource("7_yme6o"), ExtResource("8_775ri"), ExtResource("9_368gs"), ExtResource("10_hwr1u"), ExtResource("11_ytfn8")])
 enemy_parent = NodePath("Path")
 start_button = NodePath("CanvasLayer/Control/Sidebar/MarginContainer/VBoxContainer/HBoxContainer3/StartButton")
 

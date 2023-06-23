@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://co0a4kvv68n63"]
+
+[ext_resource type="PackedScene" uid="uid://d0s11g84t3a2e" path="res://Enemy/enemy.tscn" id="1_o65wa"]
+[ext_resource type="Script" path="res://Enemy/sprinter.gd" id="2_8yqtk"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dfs8h"]
+resource_local_to_scene = true
+radius = 15.0
+
+[node name="Sprinter" instance=ExtResource("1_o65wa")]
+script = ExtResource("2_8yqtk")
+after_speed = 50.0
+radius = 20.0
+speed = 1500.0
+health = 30.0
+damage = 10.0
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+shape = SubResource("CircleShape2D_dfs8h")
+
+[node name="Timer" type="Timer" parent="." index="1"]
+wait_time = 1.25
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

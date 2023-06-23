@@ -6,5 +6,5 @@
 [resource]
 script = ExtResource("1_vkcvn")
 turret = ExtResource("2_ibvp1")
-price = 250.0
+price = 300.0
 name = "Fast Turret"

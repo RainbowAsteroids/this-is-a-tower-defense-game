@@ -35,9 +35,10 @@ func _ready():
 	
 	pass # the game is over
 
-func _on_exit_area_entered(area: EnemyArea2D):
-	self.health -= area.get_parent().damage
-	area.get_parent().queue_free()
+func _on_exit_area_entered(area: Area2D):
+	if area is EnemyArea2D:
+		self.health -= area.get_parent().damage
+		area.get_parent().queue_free()
 
 func _on_start_button_pressed():
 	start_button.disabled = true

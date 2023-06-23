@@ -23,8 +23,8 @@ func _physics_process(delta):
 	if not Engine.is_editor_hint():
 		progress += speed * delta
 
-func _on_bullet_area_entered(bullet: Bullet):
-	if bullet:
+func _on_bullet_area_entered(bullet: Area2D):
+	if bullet is Bullet:
 		health -= bullet.damage
 		bullet.penetration -= 1
 		if bullet.penetration <= 0:

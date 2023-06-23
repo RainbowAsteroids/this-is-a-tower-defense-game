@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="Wave" load_steps=7 format=3 uid="uid://cj2stkp5kwnss"]
+
+[ext_resource type="Script" path="res://Wave/wave.gd" id="1_wd5xi"]
+[ext_resource type="PackedScene" uid="uid://co0a4kvv68n63" path="res://Enemies/sprinter.tscn" id="2_iawp5"]
+[ext_resource type="Script" path="res://Wave/enemy_burst.gd" id="3_hiasu"]
+[ext_resource type="PackedScene" uid="uid://bufo6nmi6meji" path="res://Enemies/tank_enemy.tscn" id="4_kklw3"]
+
+[sub_resource type="Resource" id="Resource_jf2fh"]
+script = ExtResource("3_hiasu")
+enemy = ExtResource("2_iawp5")
+number_of_enemies = 1000
+enemies_per_second = 20.0
+
+[sub_resource type="Resource" id="Resource_kixaq"]
+script = ExtResource("3_hiasu")
+enemy = ExtResource("4_kklw3")
+number_of_enemies = 1000
+enemies_per_second = 20.0
+
+[resource]
+script = ExtResource("1_wd5xi")
+wave_sections = Array[Resource("res://Wave/wave_section.gd")]([SubResource("Resource_jf2fh"), SubResource("Resource_kixaq")])

@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://7xgy10pjq38o"]
+
+[ext_resource type="PackedScene" uid="uid://d0s11g84t3a2e" path="res://Enemy/enemy.tscn" id="1_6n0sd"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ot7r0"]
+resource_local_to_scene = true
+radius = 15.0
+
+[node name="ZoomEnemy" instance=ExtResource("1_6n0sd")]
+color = Color(0.501961, 0, 0.435294, 1)
+speed = 265.0
+health = 3.0
+damage = 7.0
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+visible = false
+shape = SubResource("CircleShape2D_ot7r0")
