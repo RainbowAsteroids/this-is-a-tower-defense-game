@@ -7,6 +7,8 @@ class_name EnemyBurst
 
 func execute(enemy_parent: Node):
 	for i in range(number_of_enemies):
+		if not weakref(enemy_parent).get_ref():
+			return
 		enemy_parent.add_child(enemy.instantiate())
 		await enemy_parent.get_tree().create_timer(1 / enemies_per_second).timeout
 	finished.emit()

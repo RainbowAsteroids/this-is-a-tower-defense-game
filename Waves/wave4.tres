@@ -18,5 +18,6 @@ number_of_enemies = 20
 enemies_per_second = 3.0
 
 [resource]
+resource_local_to_scene = true
 script = ExtResource("1_0dh0o")
 wave_sections = Array[Resource("res://Wave/wave_section.gd")]([SubResource("Resource_b7val"), SubResource("Resource_r6qmc")])

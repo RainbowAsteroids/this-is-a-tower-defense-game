@@ -11,10 +11,13 @@ signal round_ended
 	set(value):
 		health = value
 		health_changed.emit(value)
-@export var money: float = 500
+@export var money: int = 500
 
 @export var enemy_parent: Path2D
 @export var start_button: Button
+
+@export var lose_screen: CanvasLayer
+@export var win_screen: CanvasLayer
 
 var wave_count: int:
 	set(value):
@@ -33,12 +36,20 @@ func _ready():
 		wave.execute(enemy_parent)
 		await wave.finished
 	
-	pass # the game is over
+	while true:
+		if enemy_parent.get_child_count() == 1: # Remeber there's a Line2D in enemy_parent
+			win_screen.visible = true
+			get_tree().paused = true
+		await get_tree().process_frame
 
 func _on_exit_area_entered(area: Area2D):
 	if area is EnemyArea2D:
 		self.health -= area.get_parent().damage
 		area.get_parent().queue_free()
+		
+		if health <= 0:
+			lose_screen.visible = true
+			get_tree().paused = true
 
 func _on_start_button_pressed():
 	start_button.disabled = true
